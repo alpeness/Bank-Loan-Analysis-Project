@@ -6,7 +6,7 @@ Analyzing bank loan data with SQL to evaluate portfolio health, credit risk, and
 
 ## 2) Business Tasks
 
-#### a) Portfolio overview
+### a) Portfolio overview
 
 General health check of the loan portfolio including total volume and averages.
 
@@ -30,7 +30,7 @@ JOIN credit_profiles cp ON l.customer_id = cp.customer_id;
 - With an average credit score of **716.6**, the portfolio appears generally healthy.
 
 
-#### b) Loan amount distribution
+### b) Loan amount distribution
 
 Categorizing loans into Low, Medium, High, and Very High segments to analyze the concentration of capital.
 
@@ -62,7 +62,7 @@ ORDER BY CASE loan_category
 - **Main Money Source:** Since most loans are in the >200K category, they make up the biggest part of the total money, summing up to about **$2.39 Billion**.
 - **Few Small Loans:** Loans under 100K are rare in this dataset, representing less than **9%** of the total. This indicates that the bank mostly gives out large loans instead of small ones.
 
-#### c) Loan purpose analysis
+### c) Loan purpose analysis
 
 Understanding why customers are borrowing money and their repayment behavior based on the purpose.
 
