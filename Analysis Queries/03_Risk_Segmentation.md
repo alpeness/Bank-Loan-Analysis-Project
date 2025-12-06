@@ -1,4 +1,4 @@
-## 4) Risk Segmentation
+## 3) Risk Segmentation
 
 Categorizing customers into risk levels (Low, Medium, High, Very High) to understand potential default risks.
 
