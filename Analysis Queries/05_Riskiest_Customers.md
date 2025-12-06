@@ -1,4 +1,4 @@
-## 8) Top 10 Riskiest Customers
+## 5) Top 10 Riskiest Customers
 
 To identify customers with the lowest credit scores in the dataset. This segment represents the highest risk of default. Analyzing this group helps the bank decide where to tighten lending criteria or increase monitoring to minimize potential losses.
 
