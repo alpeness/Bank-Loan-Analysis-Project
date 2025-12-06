@@ -11,46 +11,32 @@ JOIN customers c ON l.customer_id = c.customer_id
 JOIN credit_profiles cp ON l.customer_id = cp.customer_id;
 
 
--- 2) Loan Amount Distribution
+-- 2) Credit Score Distribution
 
 SELECT
     CASE
-        WHEN current_loan_amount < 50000 THEN 'Low (0-50K)'
-        WHEN current_loan_amount < 100000 THEN 'Medium (50-100K)'
-        WHEN current_loan_amount < 200000 THEN 'High (100-200K)'
-        ELSE 'Very High (200K+)'
-    END AS loan_category,
-    COUNT(*) AS `Number of Loan`,
-    SUM(current_loan_amount) AS `Total Amount`,
-    ROUND(AVG(current_loan_amount), 2) AS `Average Amount`,
-    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS 'Percentage'
-FROM loans l
-GROUP BY loan_category
-ORDER BY CASE loan_category
-        WHEN 'Low (0-50K)' THEN 1
-        WHEN 'Medium (50-100K)' THEN 2
-        WHEN 'High (100-200K)' THEN 3
-        WHEN 'Very High (200K+)' THEN 4
+        WHEN cp.credit_score >= 800 THEN 'Excellent'
+        WHEN cp.credit_score >= 740 THEN 'Very Good'
+        WHEN cp.credit_score >= 670 THEN 'Good'
+        WHEN cp.credit_score >= 580 THEN 'Fair'
+        ELSE 'Poor'
+        END AS credit_score_distribution,
+        COUNT(DISTINCT cp.customer_id) AS `Number Of Customer`,
+        ROUND(100 * COUNT(*) / SUM(COUNT(*)) OVER(),2) AS `Percentage`
+FROM credit_profiles cp
+WHERE cp.credit_score IS NOT NULL
+GROUP BY credit_score_distribution
+ORDER BY
+    CASE credit_score_distribution
+        WHEN 'Excellent' THEN 1
+        WHEN 'Very Good' THEN 2
+        WHEN 'Good' THEN 3
+        WHEN 'Fair' THEN 4
+        WHEN 'Poor' THEN 5
     END;
 
--- 3) Loan Purpose Analysis
 
-SELECT
-    l.purpose as Purpose,
-    COUNT(DISTINCT l.loan_id) `Number of Loans For Each Purpose`,
-    SUM(l.current_loan_amount) AS `Total Loan Amount`,
-    ROUND(AVG(cp.credit_score), 2) `Average Credit Score`,
-    ROUND(AVG(cp.monthly_debt), 2) `Average Monthly Debt`,
-    COUNT(CASE WHEN cp.number_of_credit_problems > 0 THEN 1 END) `Customers With Credit Problems`,
-    ROUND(100.0 * COUNT(CASE WHEN cp.number_of_credit_problems > 0 THEN 1 END) / COUNT(*), 2) AS `Percentage Have Problems`
-FROM loans l
-JOIN customers c ON c.customer_id = l.customer_id
-JOIN credit_profiles cp ON l.customer_id = cp.customer_id
-GROUP BY purpose
-ORDER BY `Percentage Have Problems` DESC;
-
-
--- 4) Risk Segmentation
+-- 3) Risk Segmentation
 
 SELECT
     CASE
@@ -80,38 +66,8 @@ ORDER BY
         WHEN 'Very High Risk' THEN 4
     END;
 
--- 5) Loan Term Analysis
 
-SELECT
-    l.term AS `Term`,
-    COUNT(DISTINCT l.loan_id) AS `Number Of Loans`,
-    ROUND(SUM(l.current_loan_amount) / 1000000000, 2) AS `Total Loan Volume in Billion`,
-    ROUND(AVG(l.current_loan_amount), 0) AS `Average Loan Amount`,
-    ROUND(AVG(cp.credit_score), 1) AS `Average Credit Score`
-
-FROM loans l
-JOIN credit_profiles cp ON l.customer_id = cp.customer_id
-GROUP BY l.term
-ORDER BY COUNT(*) DESC;
-
-
--- 6) Home Ownership Analysis
-
-SELECT
-    c.home_ownership AS `Home Ownership`,
-    COUNT(*) AS `Number Of Customer`,
-    ROUND(AVG(c.annual_income) / 1000000, 3) AS `Average Income in Million (Annual)`,
-    ROUND(AVG(l.current_loan_amount), 2) AS `Average Loan Amount`,
-    ROUND(AVG(cp.credit_score), 2) AS `Average Credit Score`
-
-FROM customers c
-JOIN loans l ON c.customer_id = l.customer_id
-JOIN credit_profiles cp ON c.customer_id = cp.customer_id
-GROUP BY home_ownership
-ORDER BY COUNT(*) DESC;
-
-
--- 7) TOP 10 Best Customers
+-- 4) TOP 10 Best Customers
 
 SELECT
     c.customer_id AS `Customer ID`,
@@ -128,7 +84,7 @@ ORDER BY cp.credit_score DESC, c.annual_income DESC
 LIMIT 10;
 
 
--- 8) TOP 10 Riskiest Customer
+-- 5) TOP 10 Riskiest Customer
 
 SELECT
     c.customer_id AS `Customer ID`,
@@ -146,32 +102,7 @@ ORDER BY cp.credit_score, cp.number_of_credit_problems DESC
 LIMIT 10;
 
 
--- 9) Credit Score Distribution
-
-SELECT
-    CASE
-        WHEN cp.credit_score >= 800 THEN 'Excellent'
-        WHEN cp.credit_score >= 740 THEN 'Very Good'
-        WHEN cp.credit_score >= 670 THEN 'Good'
-        WHEN cp.credit_score >= 580 THEN 'Fair'
-        ELSE 'Poor'
-        END AS credit_score_distribution,
-        COUNT(DISTINCT cp.customer_id) AS `Number Of Customer`,
-        ROUND(100 * COUNT(*) / SUM(COUNT(*)) OVER(),2) AS `Percentage`
-FROM credit_profiles cp
-WHERE cp.credit_score IS NOT NULL
-GROUP BY credit_score_distribution
-ORDER BY
-    CASE credit_score_distribution
-        WHEN 'Excellent' THEN 1
-        WHEN 'Very Good' THEN 2
-        WHEN 'Good' THEN 3
-        WHEN 'Fair' THEN 4
-        WHEN 'Poor' THEN 5
-    END;
-
-
--- 10) DTI (Debt-to-Income) Ratio Analysis
+-- 6) DTI (Debt-to-Income) Ratio Analysis
 
 SELECT
     CASE
@@ -195,3 +126,75 @@ ORDER BY
         WHEN 'High (43-50%)' THEN 3
         WHEN 'Very High (>50%)' THEN 4
     END;
+
+
+-- 7) Loan Term Analysis
+
+SELECT
+    l.term AS `Term`,
+    COUNT(DISTINCT l.loan_id) AS `Number Of Loans`,
+    ROUND(SUM(l.current_loan_amount) / 1000000000, 2) AS `Total Loan Volume in Billion`,
+    ROUND(AVG(l.current_loan_amount), 0) AS `Average Loan Amount`,
+    ROUND(AVG(cp.credit_score), 1) AS `Average Credit Score`
+
+FROM loans l
+JOIN credit_profiles cp ON l.customer_id = cp.customer_id
+GROUP BY l.term
+ORDER BY COUNT(*) DESC;
+
+
+-- 8) Loan Amount Distribution
+
+SELECT
+    CASE
+        WHEN current_loan_amount < 50000 THEN 'Low (0-50K)'
+        WHEN current_loan_amount < 100000 THEN 'Medium (50-100K)'
+        WHEN current_loan_amount < 200000 THEN 'High (100-200K)'
+        ELSE 'Very High (200K+)'
+    END AS loan_category,
+    COUNT(*) AS `Number of Loan`,
+    SUM(current_loan_amount) AS `Total Amount`,
+    ROUND(AVG(current_loan_amount), 2) AS `Average Amount`,
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS 'Percentage'
+FROM loans l
+GROUP BY loan_category
+ORDER BY CASE loan_category
+        WHEN 'Low (0-50K)' THEN 1
+        WHEN 'Medium (50-100K)' THEN 2
+        WHEN 'High (100-200K)' THEN 3
+        WHEN 'Very High (200K+)' THEN 4
+    END;
+
+
+-- 9) Loan Purpose Analysis
+
+SELECT
+    l.purpose as Purpose,
+    COUNT(DISTINCT l.loan_id) `Number of Loans For Each Purpose`,
+    SUM(l.current_loan_amount) AS `Total Loan Amount`,
+    ROUND(AVG(cp.credit_score), 2) `Average Credit Score`,
+    ROUND(AVG(cp.monthly_debt), 2) `Average Monthly Debt`,
+    COUNT(CASE WHEN cp.number_of_credit_problems > 0 THEN 1 END) `Customers With Credit Problems`,
+    ROUND(100.0 * COUNT(CASE WHEN cp.number_of_credit_problems > 0 THEN 1 END) / COUNT(*), 2) AS `Percentage Have Problems`
+FROM loans l
+JOIN customers c ON c.customer_id = l.customer_id
+JOIN credit_profiles cp ON l.customer_id = cp.customer_id
+GROUP BY purpose
+ORDER BY `Percentage Have Problems` DESC;
+
+
+-- 10) Home Ownership Analysis
+
+SELECT
+    c.home_ownership AS `Home Ownership`,
+    COUNT(*) AS `Number Of Customer`,
+    ROUND(AVG(c.annual_income) / 1000000, 3) AS `Average Income in Million (Annual)`,
+    ROUND(AVG(l.current_loan_amount), 2) AS `Average Loan Amount`,
+    ROUND(AVG(cp.credit_score), 2) AS `Average Credit Score`
+
+FROM customers c
+JOIN loans l ON c.customer_id = l.customer_id
+JOIN credit_profiles cp ON c.customer_id = cp.customer_id
+GROUP BY home_ownership
+ORDER BY COUNT(*) DESC;
+
