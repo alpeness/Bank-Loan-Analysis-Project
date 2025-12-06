@@ -1,4 +1,4 @@
-## 6) Home Ownership Analysis
+## 10) Home Ownership Analysis
 
 Evaluating how asset ownership (Rent, Mortgage, Own) impacts borrowing capacity and income levels.
 
