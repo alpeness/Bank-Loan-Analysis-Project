@@ -1,4 +1,4 @@
-## 2) Loan Amount Distribution
+## 8) Loan Amount Distribution
 
 Categorizing loans into Low, Medium, High, and Very High segments to analyze the concentration of capital.
 
