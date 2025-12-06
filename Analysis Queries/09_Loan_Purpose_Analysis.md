@@ -1,4 +1,4 @@
-## 3) Loan Purpose Analysis
+## 9) Loan Purpose Analysis
 
 Understanding why customers are borrowing money and their repayment behavior based on the purpose.
 
