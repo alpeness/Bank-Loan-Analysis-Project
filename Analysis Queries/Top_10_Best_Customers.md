@@ -1,4 +1,4 @@
-## TOP 10 Best Customers
+## 7) TOP 10 Best Customers
 
 To identify the bank's most valuable and lowest-risk customers (the "Premium" segment). This analysis filters for customers with the highest credit scores and zero history of credit problems. The list is ranked first by credit score, then by annual income, to highlight those with the strongest financial profiles.
 
