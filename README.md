@@ -4,7 +4,7 @@ Analyzing bank loan data with SQL to evaluate portfolio health, credit risk, and
 ## 1) Entity Relationship Diagram
 <img width="595" height="524" alt="Screenshot 2025-12-04 at 23 35 24" src="https://github.com/user-attachments/assets/07de10a5-c122-4afd-8189-219e6d34e4cb" />
 
-## 2) Business Tasks
+## 2) Analysis Reports
 
 ### a) Portfolio overview
 [![Portfolio Overview](https://img.shields.io/badge/View_Analysis-Portfolio_Overview-blue?style=for-the-badge&logo=github)](Analysis%20Queries/01_Portfolio_Overview.md)
