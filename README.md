@@ -7,33 +7,33 @@ Analyzing bank loan data with SQL to evaluate portfolio health, credit risk, and
 ## 2) Analysis Reports
 
 #### a) Portfolio Overview
-[![Portfolio Overview](https://img.shields.io/badge/View_Analysis-Portfolio_Overview-blue?style=for-the-badge&logo=github)](Analysis%20Queries/01_Portfolio_Overview.md)
+[![Portfolio Overview](https://img.shields.io/badge/View_Analysis-Portfolio_Overview-blue?style=for-the-badge&logo=github)](Analysis_Reports/01_Portfolio_Overview.md)
 
 #### b) Credit Score Distribution
-[![Credit Score Distribution](https://img.shields.io/badge/View_Analysis-Credit_Score_Distribution-blue?style=for-the-badge&logo=github)](Analysis%20Queries/02_Credit_Score_Distribution.md)
+[![Credit Score Distribution](https://img.shields.io/badge/View_Analysis-Credit_Score_Distribution-blue?style=for-the-badge&logo=github)](Analysis_Reports/02_Credit_Score_Distribution.md)
 
 #### c) Risk Segmentation
-[![Risk Segmentation](https://img.shields.io/badge/View_Analysis-Risk_Segmentation-blue?style=for-the-badge&logo=github)](Analysis%20Queries/03_Risk_Segmentation.md)
+[![Risk Segmentation](https://img.shields.io/badge/View_Analysis-Risk_Segmentation-blue?style=for-the-badge&logo=github)](Analysis_Reports/03_Risk_Segmentation.md)
 
 #### d) Top 10 Best Customers
-[![Best Customers](https://img.shields.io/badge/View_Analysis-Best_Customers-2ea44f?style=for-the-badge&logo=github)](Analysis%20Queries/04_Best_Customers.md)
+[![Best Customers](https://img.shields.io/badge/View_Analysis-Best_Customers-2ea44f?style=for-the-badge&logo=github)](Analysis_Reports/04_Best_Customers.md)
 
 #### e) Top 10 Riskiest Customers
-[![Riskiest Customers](https://img.shields.io/badge/View_Analysis-High_Risk_Customers-d73a49?style=for-the-badge&logo=github)](Analysis%20Queries/05_Riskiest_Customers.md)
+[![Riskiest Customers](https://img.shields.io/badge/View_Analysis-High_Risk_Customers-d73a49?style=for-the-badge&logo=github)](Analysis_Reports/05_Riskiest_Customers.md)
 
 #### f) DTI Ratio Analysis
-[![DTI Ratio Analysis](https://img.shields.io/badge/View_Analysis-DTI_Ratio_Analysis-blue?style=for-the-badge&logo=github)](Analysis%20Queries/06_DTI_Ratio_Analysis.md)
+[![DTI Ratio Analysis](https://img.shields.io/badge/View_Analysis-DTI_Ratio_Analysis-blue?style=for-the-badge&logo=github)](Analysis_Reports/06_DTI_Ratio_Analysis.md)
 
 #### g) Loan Term Analysis
-[![Loan Term Analysis](https://img.shields.io/badge/View_Analysis-Loan_Term_Analysis-blue?style=for-the-badge&logo=github)](Analysis%20Queries/07_Loan_Term_Analysis.md)
+[![Loan Term Analysis](https://img.shields.io/badge/View_Analysis-Loan_Term_Analysis-blue?style=for-the-badge&logo=github)](Analysis_Reports/07_Loan_Term_Analysis.md)
 
 #### h) Loan Amount Distribution
-[![Loan Amount Distribution](https://img.shields.io/badge/View_Analysis-Loan_Amount_Distribution-blue?style=for-the-badge&logo=github)](Analysis%20Queries/08_Loan_Amount_Distribution.md)
+[![Loan Amount Distribution](https://img.shields.io/badge/View_Analysis-Loan_Amount_Distribution-blue?style=for-the-badge&logo=github)](Analysis_Reports/08_Loan_Amount_Distribution.md)
 
 #### i) Loan Purpose Analysis
-[![Loan Purpose Analysis](https://img.shields.io/badge/View_Analysis-Loan_Purpose_Analysis-blue?style=for-the-badge&logo=github)](Analysis%20Queries/09_Loan_Purpose_Analysis.md)
+[![Loan Purpose Analysis](https://img.shields.io/badge/View_Analysis-Loan_Purpose_Analysis-blue?style=for-the-badge&logo=github)](Analysis_Reports/09_Loan_Purpose_Analysis.md)
 
 #### j) Home Ownership Analysis
-[![Home Ownership Analysis](https://img.shields.io/badge/View_Analysis-Home_Ownership_Analysis-blue?style=for-the-badge&logo=github)](Analysis%20Queries/10_Home_Ownership_Analysis.md)
+[![Home Ownership Analysis](https://img.shields.io/badge/View_Analysis-Home_Ownership_Analysis-blue?style=for-the-badge&logo=github)](Analysis_Reports/10_Home_Ownership_Analysis.md)
 
 
