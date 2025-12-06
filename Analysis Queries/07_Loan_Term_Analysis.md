@@ -1,4 +1,4 @@
-## 5) Loan Term Analysis
+## 7) Loan Term Analysis
 
 Comparing the performance and volume of Short-Term vs. Long-Term loans to understand customer preferences and risk profiles.
 
