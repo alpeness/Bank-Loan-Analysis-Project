@@ -1,4 +1,4 @@
-## 10) DTI (Debt-to-Income) Ratio Analysis
+## 6) DTI (Debt-to-Income) Ratio Analysis
 
 ```sql
 SELECT
