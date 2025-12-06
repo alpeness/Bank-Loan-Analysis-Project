@@ -1,4 +1,4 @@
-## 9) Credit Score Distribution
+## 2) Credit Score Distribution
 
 To categorize the entire customer base into standardized credit tiers (Fair, Good, Very Good). This segmentation provides a macro-level view of the bank's portfolio health, showing the proportion of low-risk vs high-risk customers.
 
